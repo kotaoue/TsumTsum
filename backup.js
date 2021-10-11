@@ -1,16 +1,16 @@
 function backup() {
-  const backupValues = getBackupValues();
-
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("履歴");
   const row = sheet.getLastRow() + 1;
 
-  sheet.getRange(row, 1, 1, 6).setValues(backupValues);
+  const backupValues = getBackupValues(row);
+
+  sheet.getRange(row, 1, 1, 10).setValues(backupValues);
 
   setTableAppearance(sheet);
   createFilterByName(sheet);
 }
 
-function getBackupValues() {
+function getBackupValues(row) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("常設");
 
   const r = [
@@ -21,6 +21,10 @@ function getBackupValues() {
       sheet.getRange('M2').getValue(),
       sheet.getRange('N2').getValue(),
       sheet.getRange('O2').getValue(),
+      `=max(B${row}-B${row - 1}, 0)`,
+      `=sum(G$2:G${row})`,
+      row - 1,
+      `=ROUND(H${row}/${row})`,
     ]
   ];
 
