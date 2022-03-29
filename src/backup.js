@@ -4,7 +4,7 @@ function backup() {
 
   const backupValues = getBackupValues(row);
 
-  sheet.getRange(row, 1, 1, 10).setValues(backupValues);
+  sheet.getRange(row, 1, 1, 11).setValues(backupValues);
 
   setTableAppearance(sheet);
   createFilterByName(sheet);
@@ -25,6 +25,7 @@ function getBackupValues(row) {
       `=sum(G$2:G${row})`,
       row - 1,
       `=ROUND(H${row}/${row})`,
+      `=C${row}/(C${row}+E${row})`,
     ]
   ];
 
