@@ -4,7 +4,7 @@ function backup() {
 
   const backupValues = getBackupValues(row);
 
-  sheet.getRange(row, 1, 1, 11).setValues(backupValues);
+  sheet.getRange(row, 1, 1, 12).setValues(backupValues);
 
   setTableAppearance(sheet);
   createFilterByName(sheet);
@@ -22,6 +22,7 @@ function getBackupValues(row) {
       sheet.getRange('N2').getValue(),
       sheet.getRange('O2').getValue(),
       `=max(B${row}-B${row - 1}, 0)`,
+      `=max((B${row}-B${row - 1})+((E${row - 1}-E${row})*30000), 0)`,
       `=sum(G$2:G${row})`,
       row - 1,
       `=ROUND(H${row}/${row})`,
