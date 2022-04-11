@@ -25,7 +25,7 @@ function getBackupValues(row) {
       `=max((B${row}-B${row - 1})+((E${row - 1}-E${row})*30000), 0)`,
       `=sum(G$2:G${row})`,
       row - 1,
-      `=ROUND(H${row}/${row})`,
+      `=ROUND(I${row}/${row})`,
       `=C${row}/(C${row}+E${row})`,
     ]
   ];
